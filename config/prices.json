@@ -31,12 +31,7 @@
     {
         "name": "banana",
         "price": 0.10,
-        "specialOffers": [
-            {
-                "numOfItemsForSpecial": 2,
-                "price": 0.50
-            }
-        ]
+        "specialOffers": []
     }
 ]
 
