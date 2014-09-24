@@ -1,4 +1,4 @@
-# Store Checkout Application | Shopping cart.
+# Store Checkout Application.
 
 # Description
 
