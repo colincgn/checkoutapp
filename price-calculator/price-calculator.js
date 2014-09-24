@@ -24,16 +24,16 @@ exports.calculateCostOfItems = function (checkedOutItemsObj) {
     return result;
 };
 
-function calculateItemCost(priceObj, noItemsSold) {
+function calculateItemCost(priceObj, numOfItemsSold) {
     var price;
     if (priceObj.specialOffers.length > 0) {
         //If there are specials, calculate the cost of all specials and use the one with the highest savings.
         var totalsAfterDiscount = _.map(priceObj.specialOffers, function (special) {
-            return  specialsCalculator.calculateCostWithSpecial(priceObj.price, special, noItemsSold);
+            return  specialsCalculator.calculateCostWithSpecial(priceObj.price, special, numOfItemsSold);
         });
         price = _.min(totalsAfterDiscount);
     } else {
-        price = calculateCostAtRegularPrice(priceObj, noItemsSold);
+        price = calculateCostAtRegularPrice(priceObj, numOfItemsSold);
     }
     return price;
 }
