@@ -42,12 +42,3 @@ function calculateCostAtRegularPrice(priceObj, noItemsSold) {
     var price = priceObj.price * noItemsSold;
     return  Math.round(price * 100) / 100;
 }
-
-
-function convertPricesNamesToLowerCase() {
-    return _.map(prices, function (priceObj) {
-        return _.transform(priceObj, function (result, value, key) {
-            key === "name" ? result[key] = value.toLowerCase() : result[key] = value;
-        });
-    });
-}
