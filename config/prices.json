@@ -1,0 +1,43 @@
+[
+    {
+        "name": "apple",
+        "price": 0.50,
+        "specialOffers": [
+            {
+                "numOfItemsForSpecial": 2,
+                "price": 0.50
+            },
+            {
+                "numOfItemsForSpecial": 3,
+                "price": 1.30
+            }
+        ]
+    },
+    {
+        "name": "orange",
+        "price": 0.80,
+        "specialOffers": [
+            {
+                "numOfItemsForSpecial": 2,
+                "price": 1.2
+            }
+        ]
+    },
+    {
+        "name": "peach",
+        "price": 0.70,
+        "specialOffers": []
+    },
+    {
+        "name": "banana",
+        "price": 0.10,
+        "specialOffers": [
+            {
+                "numOfItemsForSpecial": 2,
+                "price": 0.50
+            }
+        ]
+    }
+]
+
+

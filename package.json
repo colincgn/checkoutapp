@@ -1,0 +1,16 @@
+{
+    "name": "checkoutapp",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node app"
+    },
+    "dependencies": {
+        "accounting": "0.4.1",
+        "lodash": "2.4.1"
+    },
+    "devDependencies": {
+        "proxyquire":"1.0.1",
+        "chai": "*"
+    }
+}
