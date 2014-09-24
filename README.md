@@ -1,5 +1,5 @@
 # Store Checkout Application.
-
+[![Build Status](https://travis-ci.org/colincgn/checkoutapp.svg?branch=master)](https://travis-ci.org/colincgn/checkoutapp)
 # Description
 
 This is a basic checkout application that takes a list of unordered items and calculates the total cost of your shopping cart.
