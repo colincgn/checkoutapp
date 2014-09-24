@@ -3,7 +3,8 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "start": "node app"
+        "start": "node app",
+        "test": "./node_modules/mocha/bin/mocha"
     },
     "dependencies": {
         "accounting": "0.4.1",
@@ -11,6 +12,7 @@
     },
     "devDependencies": {
         "proxyquire":"1.0.1",
+        "mocha": "*",
         "chai": "*"
     }
 }
