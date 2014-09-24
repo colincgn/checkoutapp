@@ -29,7 +29,7 @@ node app.js
 To edit or check the prices edit the prices.json file found in the config directory.
 
 ### Running tests.
-After running npm install from the install instructions, from the checkoutapp directory run
+After running npm install from the install instructions, from the checkoutapp directory run.
 ```
 npm test
 ```
