@@ -4,7 +4,7 @@ var accounting = require('accounting');
  costOfItemsArr eg.
  [
     { totalCost: 1,
-      specialLineItems: [ {
+      saleLineItems: [ {
                              numberOfItems: 2,
                              price: 2
                           } ],
@@ -16,7 +16,7 @@ exports.printReceipt = function (costOfItemsArr) {
     console.log("\n");
     costOfItemsArr.forEach(function (calculatedCostObj) {
         total += calculatedCostObj.totalCost;
-        calculatedCostObj.specialLineItems.forEach(function(lineItem) {
+        calculatedCostObj.saleLineItems.forEach(function(lineItem) {
             console.log("\t" + lineItem.numberOfItems + " x " + capitilize(calculatedCostObj.name) + "\t" + accounting.formatMoney(lineItem.price));
         });
     });

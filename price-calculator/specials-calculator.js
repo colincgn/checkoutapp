@@ -15,7 +15,7 @@ exports.applySpecial = function (regularCostOfItem, specialsObj, totalNumberOfIt
 
     return {
         totalCost: roundTwoDecimalPlaces(price),
-        specialLineItems: addSpecialLineItems(numberOfSpecialSaleGroups, specialsObj, numOfItemsForSpecial, regularCostOfItem, numberOfItemsNotPartOfSale)
+        saleLineItems: addSpecialLineItems(numberOfSpecialSaleGroups, specialsObj, numOfItemsForSpecial, regularCostOfItem, numberOfItemsNotPartOfSale)
     };
 };
 
@@ -32,8 +32,8 @@ function addSpecialLineItems(numberOfSpecialSaleGroups, specialsObj, numOfItemsF
     return result;
 }
 
-function roundTwoDecimalPlaces(price) {
-    return Math.round(price * 100) / 100;
+function roundTwoDecimalPlaces(number) {
+    return Math.round(number * 100) / 100;
 }
 
 function createSpecialItemReturnObj(price, numberOfItems) {
@@ -43,3 +43,4 @@ function createSpecialItemReturnObj(price, numberOfItems) {
     };
 }
 
+exports.roundTwoDecimalPlaces = roundTwoDecimalPlaces;

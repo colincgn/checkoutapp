@@ -20,11 +20,12 @@ exports.calculateCostOfItems = function (checkedOutItemsObj) {
 function calculateItemCost(priceObj, numOfItemsSold) {
     var price;
     if (priceObj.specialOffers.length > 0) {
-        //If there are specials, calculate the cost of all specials and use the one with the highest savings.
+
         var totalsAfterDiscount = _.map(priceObj.specialOffers, function (special) {
             return  specialsCalculator.applySpecial(priceObj.price, special, numOfItemsSold);
         });
 
+        //If there are specials, calculate the cost of all specials and use the one with the highest savings.
         price = _.min(totalsAfterDiscount, function (specials) {
             return specials.totalCost;
         });
@@ -36,13 +37,13 @@ function calculateItemCost(priceObj, numOfItemsSold) {
 }
 
 function calculateCostAtRegularPrice(priceObj, noItemsSold) {
-    var price = priceObj.price * noItemsSold;
+    var price =  specialsCalculator.roundTwoDecimalPlaces(priceObj.price * noItemsSold);
     return {
-        totalCost: Math.round(price * 100) / 100,
-        specialLineItems: [
+        totalCost: price,
+        saleLineItems: [
             {
                 numberOfItems: noItemsSold,
-                price: Math.round(price * 100) / 100
+                price: price
             }
         ]
 

@@ -44,7 +44,7 @@ describe('Price Calculator', function () {
             assert.typeOf(results, 'array', 'Results is an object');
             assert.property(results[0], 'totalCost');
             assert.property(results[0], 'name');
-            assert.property(results[0], 'specialLineItems');
+            assert.property(results[0], 'saleLineItems');
         });
 
         it('calculateCostOfItems should return Results with correct type and properties WITHOUT special', function () {
@@ -53,18 +53,18 @@ describe('Price Calculator', function () {
             assert.typeOf(results, 'array', 'Results is an object');
             assert.property(results[0], 'totalCost');
             assert.property(results[0], 'name');
-            assert.property(results[0], 'specialLineItems');
+            assert.property(results[0], 'saleLineItems');
         });
 
         it('Should calculate lowest price of items when they have multiple special offers', function () {
 
             var results = calculator.calculateCostOfItems({apple: 3})[0];
             assert.equal('apple', results.name);
-            assert.equal(2, results.specialLineItems.length);
-            assert.equal(2, results.specialLineItems[0].numberOfItems);
-            assert.equal(0.5, results.specialLineItems[0].price);
-            assert.equal(1, results.specialLineItems[1].numberOfItems);
-            assert.equal(0.5, results.specialLineItems[1].price);
+            assert.equal(2, results.saleLineItems.length);
+            assert.equal(2, results.saleLineItems[0].numberOfItems);
+            assert.equal(0.5, results.saleLineItems[0].price);
+            assert.equal(1, results.saleLineItems[1].numberOfItems);
+            assert.equal(0.5, results.saleLineItems[1].price);
             assert.equal(1, results.totalCost);
         });
 
@@ -77,18 +77,18 @@ describe('Price Calculator', function () {
             var banana = results[1];
 
             assert.equal('apple', apple.name);
-            assert.equal(2, apple.specialLineItems.length);
-            assert.equal(2, apple.specialLineItems[0].numberOfItems);
-            assert.equal(0.5, apple.specialLineItems[0].price);
-            assert.equal(2, apple.specialLineItems[1].numberOfItems);
-            assert.equal(0.5, apple.specialLineItems[1].price);
+            assert.equal(2, apple.saleLineItems.length);
+            assert.equal(2, apple.saleLineItems[0].numberOfItems);
+            assert.equal(0.5, apple.saleLineItems[0].price);
+            assert.equal(2, apple.saleLineItems[1].numberOfItems);
+            assert.equal(0.5, apple.saleLineItems[1].price);
             assert.equal(1, apple.totalCost);
 
             assert.equal('banana', banana.name);
-            assert.equal(1, banana.specialLineItems.length);
+            assert.equal(1, banana.saleLineItems.length);
 
-            assert.equal(3, banana.specialLineItems[0].numberOfItems);
-            assert.equal(1.8, banana.specialLineItems[0].price);
+            assert.equal(3, banana.saleLineItems[0].numberOfItems);
+            assert.equal(1.8, banana.saleLineItems[0].price);
             assert.equal(1.8, banana.totalCost);
         });
 
