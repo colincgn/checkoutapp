@@ -1,18 +1,30 @@
+var prices = require('../config/prices.json');
+var _ = require('lodash');
+
 var items = {};
 
-exports.scanItem = function(scannedItem) {
-    var currentScans = items[scannedItem];
-    if(currentScans) {
-        items[scannedItem]++;
+exports.scanItem = function (scannedItem) {
+    if (isValidItem(scannedItem)) {
+        var currentScans = items[scannedItem];
+        if (currentScans) {
+            items[scannedItem]++;
+        } else {
+            items[scannedItem] = 1;
+        }
     } else {
-        items[scannedItem] = 1;
+        console.log("Err: Unknown Item Scanned : " + scannedItem);
     }
 };
 
-exports.getAllItems = function() {
+function isValidItem(item) {
+    var priceObj = _.find(prices, {"name": item});
+    return priceObj !== undefined;
+}
+
+exports.getAllItems = function () {
     return items;
 };
 
-exports.resetScanner = function() {
+exports.resetScanner = function () {
     items = {};
 };

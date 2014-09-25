@@ -3,17 +3,22 @@ var accounting = require('accounting');
 /*
  costOfItemsArr eg.
  [
-    {
-        name: 'apple', numberOfItems: 1, price: 0.5
-    }
+    { totalCost: 1,
+      specialLineItems: [ {
+                             numberOfItems: 2,
+                             price: 2
+                          } ],
+      name: 'apple' }
  ]
  */
 exports.printReceipt = function (costOfItemsArr) {
     var total = 0;
     console.log("\n");
     costOfItemsArr.forEach(function (calculatedCostObj) {
-        total += calculatedCostObj.price;
-        console.log("\t" + calculatedCostObj.numberOfItems + " x " + capitilize(calculatedCostObj.name) + "\t" + accounting.formatMoney(calculatedCostObj.price));
+        total += calculatedCostObj.totalCost;
+        calculatedCostObj.specialLineItems.forEach(function(lineItem) {
+            console.log("\t" + lineItem.numberOfItems + " x " + capitilize(calculatedCostObj.name) + "\t" + accounting.formatMoney(lineItem.price));
+        });
     });
     console.log("\n" +
         "\tTOTAL Cost\t"+accounting.formatMoney(total));

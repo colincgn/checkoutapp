@@ -9,17 +9,10 @@ var _ = require('lodash');
 exports.calculateCostOfItems = function (checkedOutItemsObj) {
     var result = [];
     _.forEach(checkedOutItemsObj, function (numOfItemsSold, key) {
-        var priceObj = _.find(prices, {"name": key.toLowerCase()});
+        var itemName = key.toLowerCase();
+        var priceObj = _.find(prices, {"name": itemName});
 
-        if (priceObj !== undefined) {
-            result.push({
-                name: key,
-                numberOfItems: numOfItemsSold,
-                price: calculateItemCost(priceObj, numOfItemsSold)
-            });
-        } else {
-            console.log("Err: Unknown Item Scanned");
-        }
+        result.push(_.assign(calculateItemCost(priceObj, numOfItemsSold), {"name": itemName}))
     });
     return result;
 };
@@ -29,16 +22,29 @@ function calculateItemCost(priceObj, numOfItemsSold) {
     if (priceObj.specialOffers.length > 0) {
         //If there are specials, calculate the cost of all specials and use the one with the highest savings.
         var totalsAfterDiscount = _.map(priceObj.specialOffers, function (special) {
-            return  specialsCalculator.calculateCostWithSpecial(priceObj.price, special, numOfItemsSold);
+            return  specialsCalculator.applySpecial(priceObj.price, special, numOfItemsSold);
         });
-        price = _.min(totalsAfterDiscount);
+
+        price = _.min(totalsAfterDiscount, function (specials) {
+            return specials.totalCost;
+        });
     } else {
         price = calculateCostAtRegularPrice(priceObj, numOfItemsSold);
     }
+
     return price;
 }
 
 function calculateCostAtRegularPrice(priceObj, noItemsSold) {
     var price = priceObj.price * noItemsSold;
-    return  Math.round(price * 100) / 100;
+    return {
+        totalCost: Math.round(price * 100) / 100,
+        specialLineItems: [
+            {
+                numberOfItems: noItemsSold,
+                price: Math.round(price * 100) / 100
+            }
+        ]
+
+    }
 }
